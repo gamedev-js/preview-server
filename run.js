@@ -10,9 +10,10 @@ const help = `
     -p, --port      Specify the port.
     -e, --entry     Specify the entry dir.
 `;
+const cwd = process.cwd();
 
 (() => {
-  const argv = process.argv.slice(1);
+  const argv = process.argv.slice(2);
   const option = {
     port: 8001,
     entry: '',
@@ -40,6 +41,7 @@ const help = `
   }
 
   //
+  const path = require('path');
   const ip = require('ip');
   const qrcode = require('qrcode-terminal');
   const { spawn } = require('child_process');
@@ -56,7 +58,7 @@ const help = `
     console.log(code);
 
     spawn('http-server', [
-      option.file, '-a', 'localhost', '-p', option.port, '-c-1'
+      path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ], {
         stdio: 'inherit'
       });
