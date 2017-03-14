@@ -19,4 +19,4 @@ Options:
   -e, --entry     Specify the entry dir.
 ```
 
-![screen shot](https://cloud.githubusercontent.com/assets/174891/23889207/cad1a966-08c6-11e7-93f3-60347f12204a.png)
+<img src="https://cloud.githubusercontent.com/assets/174891/23889207/cad1a966-08c6-11e7-93f3-60347f12204a.png" width="400" />
