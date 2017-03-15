@@ -42,6 +42,7 @@ const cwd = process.cwd();
 
   //
   const path = require('path');
+  const fs = require('fs');
   const ip = require('ip');
   const qrcode = require('qrcode-terminal');
   const { spawn } = require('child_process');
@@ -57,8 +58,16 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
+    // check if path exists
+    let bin = `${__dirname}/node_modules/.bin/http-server`;
+    try {
+      fs.statSync(bin);
+    } catch (err) {
+      bin = path.resolve('../node_modules/.bin/http-server');
+    }
+
     spawn('node', [
-      `${__dirname}/node_modules/.bin/http-server`,
+      bin,
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ], {
         stdio: 'inherit'
