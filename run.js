@@ -63,7 +63,7 @@ const cwd = process.cwd();
     try {
       fs.statSync(bin);
     } catch (err) {
-      bin = path.resolve('../node_modules/.bin/http-server');
+      bin = path.resolve(`${__dirname}/../node_modules/.bin/http-server`);
     }
 
     spawn('node', [
