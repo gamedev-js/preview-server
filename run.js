@@ -57,7 +57,8 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
-    spawn('http-server', [
+    spawn('node', [
+      `${__dirname}/node_modules/.bin/http-server`,
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ], {
         stdio: 'inherit'
