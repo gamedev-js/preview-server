@@ -58,16 +58,7 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
-    // check if path exists
-    let bin = `${__dirname}/node_modules/.bin/http-server`;
-    try {
-      fs.statSync(bin);
-    } catch (err) {
-      bin = path.resolve(`${__dirname}/../node_modules/.bin/http-server`);
-    }
-
-    spawn('node', [
-      bin,
+    spawn('http-server', [
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ], {
         stdio: 'inherit'

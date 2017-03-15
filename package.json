@@ -1,6 +1,6 @@
 {
   "name": "preview-server",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A http server serve static files and directories for quick preview.",
   "bin": {
     "preview": "./run.js"
