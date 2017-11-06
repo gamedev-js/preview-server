@@ -58,10 +58,19 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
-    spawn('http-server', [
+    let cmd = 'http-server';
+    let args = [
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
-    ], {
-        stdio: 'inherit'
-      });
+    ];
+
+    if (process.platform === 'win32') {
+      cmd = 'cmd';
+      args = [
+        '/s', '/c', 'http-server',
+        path.join(cwd, option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+      ];
+    }
+
+    spawn(cmd, args, { stdio: 'inherit' });
   });
 })();
