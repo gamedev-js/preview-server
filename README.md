@@ -5,7 +5,6 @@ This programe will simply run a [http-server](https://github.com/indexzero/http-
 ## Install
 
 ```bash
-npm install -g http-server
 npm install --save-dev preview-server
 ```
 
