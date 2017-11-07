@@ -42,10 +42,9 @@ const cwd = process.cwd();
 
   //
   const path = require('path');
-  const fs = require('fs');
   const ip = require('ip');
   const qrcode = require('qrcode-terminal');
-  const { spawn } = require('child_process');
+  const crossSpawn = require('cross-spawn');
 
   function blue(str) {
     return '\x1b[1m\x1b[34m' + str + '\x1b[39m\x1b[22m';
@@ -58,8 +57,8 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
-    // DISABLE {
-    // let cmd = 'http-server';
+    // DISABLE: we use cross-spawn to solve this problem {
+    // let cmd = './node_modules/.bin/http-server';
     // let args = [
     //   path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     // ];
@@ -67,7 +66,7 @@ const cwd = process.cwd();
     // if (process.platform === 'win32') {
     //   cmd = 'cmd';
     //   args = [
-    //     '/s', '/c', 'http-server',
+    //     '/s', '/c', '.\\node_modules\\.bin\\http-server',
     //     path.join(cwd, option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     //   ];
     // }
@@ -78,6 +77,6 @@ const cwd = process.cwd();
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ];
 
-    spawn(cmd, args, { stdio: 'inherit' });
+    crossSpawn(cmd, args, { stdio: 'inherit' });
   });
 })();

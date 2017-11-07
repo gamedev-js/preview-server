@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/gamedev-js/preview-server/issues",
   "dependencies": {
+    "cross-spawn": "^5.1.0",
     "http-server": "^0.9.0",
     "ip": "^1.1.5",
     "qrcode-terminal": "^0.11.0"
