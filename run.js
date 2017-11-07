@@ -58,18 +58,25 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
-    let cmd = 'http-server';
+    // DISABLE {
+    // let cmd = 'http-server';
+    // let args = [
+    //   path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+    // ];
+
+    // if (process.platform === 'win32') {
+    //   cmd = 'cmd';
+    //   args = [
+    //     '/s', '/c', 'http-server',
+    //     path.join(cwd, option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+    //   ];
+    // }
+    // } DISABLE
+
+    let cmd = './node_modules/.bin/http-server';
     let args = [
       path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
     ];
-
-    if (process.platform === 'win32') {
-      cmd = 'cmd';
-      args = [
-        '/s', '/c', 'http-server',
-        path.join(cwd, option.file), '-a', 'localhost', '-p', option.port, '-c-1'
-      ];
-    }
 
     spawn(cmd, args, { stdio: 'inherit' });
   });
