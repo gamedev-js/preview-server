@@ -46,13 +46,6 @@ const cwd = process.cwd();
   const qrcode = require('qrcode-terminal');
   const crossSpawn = require('cross-spawn');
 
-  // TODO: without crossSpawn
-  // const httpServer = require('http-server');
-  // const server = httpServer.createServer({
-  //   root: path.join(cwd,option.file)
-  // });
-  // server.listen(option.port);
-
   function blue(str) {
     return '\x1b[1m\x1b[34m' + str + '\x1b[39m\x1b[22m';
   }
@@ -64,20 +57,29 @@ const cwd = process.cwd();
   qrcode.generate(url, code => {
     console.log(code);
 
+    // METHOD 1
     // DISABLE: we use cross-spawn to solve this problem {
     // let cmd = './node_modules/.bin/http-server';
     // let args = [
-    //   path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+    //   path.join(cwd,option.file), '-a', addr, '-p', option.port, '-c-1'
     // ];
 
     // if (process.platform === 'win32') {
     //   cmd = 'cmd';
     //   args = [
     //     '/s', '/c', '.\\node_modules\\.bin\\http-server',
-    //     path.join(cwd, option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+    //     path.join(cwd, option.file), '-a', addr, '-p', option.port, '-c-1'
     //   ];
     // }
     // } DISABLE
+
+    // METHOD 2: without crossSpawn
+    // const httpServer = require('http-server');
+    // const server = httpServer.createServer({
+    //   root: path.join(cwd, option.file),
+    //   cache: -1,
+    // });
+    // server.listen(option.port, addr);
 
     let cmd = './node_modules/.bin/http-server';
     let args = [
