@@ -46,6 +46,13 @@ const cwd = process.cwd();
   const qrcode = require('qrcode-terminal');
   const crossSpawn = require('cross-spawn');
 
+  // TODO: without crossSpawn
+  // const httpServer = require('http-server');
+  // const server = httpServer.createServer({
+  //   root: path.join(cwd,option.file)
+  // });
+  // server.listen(option.port);
+
   function blue(str) {
     return '\x1b[1m\x1b[34m' + str + '\x1b[39m\x1b[22m';
   }
@@ -74,7 +81,7 @@ const cwd = process.cwd();
 
     let cmd = './node_modules/.bin/http-server';
     let args = [
-      path.join(cwd,option.file), '-a', 'localhost', '-p', option.port, '-c-1'
+      path.join(cwd,option.file), '-a', addr, '-p', option.port, '-c-1'
     ];
 
     crossSpawn(cmd, args, { stdio: 'inherit' });
